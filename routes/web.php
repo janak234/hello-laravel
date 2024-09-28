@@ -23,11 +23,19 @@ Route::get('/', function () {
     ]);
 });
 
+// get all jobs
+Route::get('/jobs', function () {
+    $my_jobs = Job::all();
+    dd($my_jobs[0]->salary);
+    return view('jobs', [
+        'jobs' => $my_jobs
+    ]);
+});
+
 // get job details
 Route::get('/jobs/{id}', function ($id) {
 
     $myjob = Job::find($id);
-    if (! $myjob) abort(404);
     // dd($myjob);
     return view('job', [
         'job' => $myjob
